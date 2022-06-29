@@ -1,0 +1,16 @@
+.header{
+    column-gap: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.87rem;
+    background-color: var(--gray800);
+}
+.header h1 {
+    color: var(--gray100);
+    font-size: 1.6rem;
+}
+.header img{
+
+    width: 2rem;
+}
