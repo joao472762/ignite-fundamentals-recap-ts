@@ -11,7 +11,7 @@ export function SideBar(){
                 className= {styles.cover}
             />
             <div className={styles.avatarContent}>
-                <Avatar/>
+                <Avatar src='https://github.com/joao472762.png'/>
             </div>
             
             <div className={styles.authorInfo}>

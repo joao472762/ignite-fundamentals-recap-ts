@@ -1,11 +1,15 @@
+import React from 'react'
 import styles from './styles.module.css'
 
-export function Avatar(){
+import {ImgHTMLAttributes} from 'react'
+
+interface ImageProps extends ImgHTMLAttributes<HTMLImageElement>{}
+
+export function Avatar({...props}:ImageProps){
     return(
         <img 
-            alt="sfjf"
+            {...props}
             className= {styles.avatar}
-            src="https://github.com/joao472762.png"
         
          />
     )

@@ -1,15 +1,41 @@
 import { Avatar } from "../Avatar";
 import styles from './styles.module.css'
 
-export function Post(){
+interface Author {
+    name: string,
+    avatarUrl: string,
+    role: string
+}
+
+interface CommentContent  {
+    type: string
+    content: string 
+} 
+
+interface props{
+    postProps:{
+        author: Author,
+        commentContent: CommentContent[],
+        publishedAt: Date
+    }
+}
+
+
+
+
+export function Post({postProps}:props){
+
+    const {author ,commentContent,publishedAt} = postProps
+  
+
     return(
         <article className={styles.post}>
             <header>
-                <Avatar/>
+                <Avatar src="https://github.com/joao472762.png"/>
                 <div className={styles.profile}>
                     <div className= {styles.author}>
-                        <strong> Lais Berlofa</strong>
-                        <span>Dev Front-End</span>
+                        <strong>{author.name}</strong>
+                        <span>{author.role}</span>
                      </div>
 
                     <time>Públicado há 1h</time>
@@ -17,14 +43,15 @@ export function Post(){
             </header>
 
             <section  className={styles.content}>
-                <p>Fala galeraa 👋</p>
-                <p>Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀</p>
-                <p>👉<a href="#">jane.design/doctorcare</a></p>
-                <p>
-                    <a href="#">#nlw</a>
-                    <a href="#">#rocketseat</a>
-                    <a href="#">#novoprojeto</a>
-                </p>
+                {
+                    commentContent.map(comment =>{
+                        return(
+                            comment.type === 'paragraph'
+                            ? <p>{comment.content}</p>
+                            : <p><a href="#">{comment.content}</a></p>
+                        )
+                    })
+                }
             </section>
             
             <form>
@@ -36,7 +63,7 @@ export function Post(){
                         Publicar
                     </button>
                 </footer>
-                
+
             </form>
         </article>
     )

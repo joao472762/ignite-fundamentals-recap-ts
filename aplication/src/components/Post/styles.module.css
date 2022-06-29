@@ -61,17 +61,21 @@ article.post {
     color: var(--grey100);
 }
 .post form textarea{
+    font-size: 1rem;
+    padding: .81rem 1rem;
+    color: var(--grey300);
     resize: none;
     min-height: 6rem;
     border-radius: 8px;
     background-color: var(--grey900);
     margin: 1rem 0px;
 }
+
 .post form button{
+    color: var(--white);
     padding: 1rem 1.5rem .87rem 1.5rem;
     border-radius: 8px;
     background-color: var(--green500);
-    color: white;
     font-weight: bold;
     transition: .3s background-color;
 }
