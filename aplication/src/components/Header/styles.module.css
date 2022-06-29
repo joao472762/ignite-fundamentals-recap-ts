@@ -4,10 +4,10 @@
     justify-content: center;
     align-items: center;
     padding: 1.87rem;
-    background-color: var(--gray800);
+    background-color: var(--grey800);
 }
 .header h1 {
-    color: var(--gray100);
+    color: var(--grey100);
     font-size: 1.6rem;
 }
 .header img{

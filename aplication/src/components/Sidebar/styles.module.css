@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
 
-    background-color: var(--gray800);
+    background-color: var(--grey800);
     overflow: hidden;
     border-radius: 8px;
 }
@@ -29,18 +29,18 @@
     padding-bottom: 1.5rem;
 }
 .sideBar .authorInfo strong{
-    color: var(--gray100);
+    color: var(--grey100);
 }
 .sideBar .authorInfo span{
     font-size: .875rem;
-    color: var(--gray400);
+    color: var(--grey400);
 }
 
 .sideBar footer{
     display: flex;
     justify-content: center;
 
-    border-top: 1px solid var(--gray600);
+    border-top: 1px solid var(--grey600);
     width: 100%;
     padding: 1.5rem 0 2rem 0
 }
@@ -55,7 +55,7 @@
     background-color: transparent;
     border-radius: 8px;
     border: 1px solid var(--green500);
-    transition: 1s color, border
+    transition: .3s color, .3s border-color
 }
 .sideBar footer button svg{
     font-size: 20px;

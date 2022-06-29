@@ -6,5 +6,18 @@
     column-gap: 1.87rem;
     margin-top: 2rem;
     padding: 0 1rem;
+
+    align-items: flex-start;
+}
+
+
+@media (max-width:700px) {
+    html{
+        font-size: 87.5% ;
+    }
+    .wrapper{
+        row-gap: 2rem;
+        grid-template-columns: 1fr;
+    }
 }
 
