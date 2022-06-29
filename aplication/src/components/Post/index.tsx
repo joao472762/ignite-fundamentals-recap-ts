@@ -1,4 +1,5 @@
 import { Avatar } from "../Avatar";
+import { Comment } from "../Comment";
 import styles from './styles.module.css'
 
 interface Author {
@@ -46,9 +47,10 @@ export function Post({postProps}:props){
                 {
                     commentContent.map(comment =>{
                         return(
+                            
                             comment.type === 'paragraph'
-                            ? <p>{comment.content}</p>
-                            : <p><a href="#">{comment.content}</a></p>
+                            ? <p key={comment.content}>{comment.content}</p>
+                            : <p key={comment.content}><a href="#">{comment.content}</a></p>
                         )
                     })
                 }
@@ -65,6 +67,8 @@ export function Post({postProps}:props){
                 </footer>
 
             </form>
+            <Comment/>
+            <Comment/>
         </article>
     )
 }
