@@ -1,28 +1,76 @@
 import { Avatar } from "../Avatar";
-import {Trash, ThumbsUp} from "phosphor-react"
 import styles from './styles.module.css'
+import {format,formatDistanceToNow} from 'date-fns'
+import ptBR from "date-fns/esm/locale/pt-BR/index.js";
 
-export function Comment(){
+import {Trash, ThumbsUp} from "phosphor-react"
+import { Author } from "../Post";
+import { useState } from "react";
+
+interface Comment {
+    commentProps:{
+        id: number,
+        author: Author
+        comment: string,
+        publicationAtComment: Date,
+    }
+    onDeleteComment: (commentId: number) => void
+    
+}
+
+
+
+export function Comment({commentProps,onDeleteComment}:Comment){
+
+    const [likes,setLikes] = useState(0)
+
+    const  {author,publicationAtComment} = commentProps
+
+    const publacationAtOnlyCalendar =  format(publicationAtComment,"d'/'M'/'y")
+    const publicationAtComplete  = publicationAtComment.toISOString() 
+    const publacationAtDiferenceToNow = formatDistanceToNow(publicationAtComment,{
+        locale: ptBR,
+        addSuffix: true
+    })
+
+    function handleAddNewLike(){
+        setLikes(state => {
+            return state + 1
+        })
+    }
+
+    function handleDeleteOneComment(){
+        onDeleteComment(commentProps.id)
+
+    }
+
     return(
         <section className={styles.comment}>
-            <Avatar src="https://pps.whatsapp.net/v/t61.24694-24/290302224_3343267319330684_1092135107733860274_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=c467d898c95839d9ebb56716705f58a6&oe=62CBCB5C"/>
+            <Avatar src={author.avatarUrl}/>
 
             <div className={styles.commentContent}>
                 <div className={styles.profile}>
                     <div className={styles.author}>
-                        <strong> Devon Lane </strong>
+                        <strong> {author.name} </strong>
                         <span> (você) </span>
-                        <time>cecar de 2h</time>
-                        <p>Muito bom Devon, parabéns!! 👏👏</p>
+                        <time
+                            dateTime={publicationAtComplete}
+                            title={publacationAtOnlyCalendar}
+                        >{publacationAtDiferenceToNow}</time>
+                        <p>{commentProps.comment}</p>
                     </div>
-                    <button title="Lixeira">
+                    <button
+                        onClick={handleDeleteOneComment}
+                        title="Lixeira">
                         <Trash/>
                     </button>
                 </div>
                 <footer>
-                    <button>
+                    <button
+                    onClick={handleAddNewLike}
+                    >
                         <ThumbsUp/>
-                        <p>Apaudir <span>3</span></p>
+                        <p>Apaudir <span>{likes}</span></p>
                     </button>
                 </footer>
             </div>

@@ -15,7 +15,7 @@ function App() {
         avatarUrl: 'https://github.com/joao472762.png',
         role: 'UI Designer'
       },
-      commentContent:[ 
+      commentsContent:[ 
         { type: 'paragraph',content: 'Fala galeraa 👋'},
         { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
         { type: 'link', content: 'rafaBalerine'},
@@ -23,6 +23,23 @@ function App() {
        
      ],
      publishedAt: new Date('2022-6-15 20:30:20')
+
+    },
+    {
+      id: 2,
+      author:{
+        name: 'Amanda u',
+        avatarUrl: 'https://github.com/joao472762.png',
+        role: 'Rh'
+      },
+      commentsContent:[ 
+        { type: 'paragraph',content: 'olá eu sou amanda'},
+        { type: 'paragraph', content: 'estou a preucura de uma nova oportunidade'},
+        { type: 'link', content: 'rafaBalerine'},
+
+       
+     ],
+     publishedAt: new Date('2022-6-30 07:30:20')
 
     }
   ]

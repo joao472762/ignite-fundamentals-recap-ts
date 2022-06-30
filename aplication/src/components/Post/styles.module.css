@@ -2,6 +2,7 @@ article.post {
     padding: 2.5rem;
     border-radius: 8px;
     background-color: var(--grey800);
+    margin-bottom: 2rem;
 }
 
 .post header {
@@ -71,16 +72,23 @@ article.post {
     margin: 1rem 0px;
 }
 
-.post form button{
+.post form button[type='submit']{
     color: var(--white);
     padding: 1rem 1.5rem .87rem 1.5rem;
     border-radius: 8px;
     background-color: var(--green500);
     font-weight: bold;
-    transition: .3s background-color;
+    transition: .3s background-color, .3s filter,.1s padding;
 }
 
-.post form button:hover{
+
+.post form button:not(:disabled):hover{
+    background-color: var(--green700);
+
+}
+
+.post form button[type='submit']:disabled{
+    filter: opacity(.7);
     background-color: var(--green700);
 }
 
