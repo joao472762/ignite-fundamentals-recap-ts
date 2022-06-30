@@ -1,7 +1,4 @@
-.App{
- 
-    display: flex;
-}
+
 .wrapper{
     max-width: 70rem;
     display: grid;
