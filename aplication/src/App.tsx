@@ -4,8 +4,21 @@ import "../src/global/styles.module.css"
 import { Post } from "./components/Post"
 import { Header } from "./components/Header"
 import { SideBar } from "./components/Sidebar"
+import { Modal } from "./components/Modal"
+import { useState } from "react"
 
 function App() {
+  const [showModal,setShowModal] = useState(true)
+
+  function ChangeModalState(){
+    showModal 
+    ? setShowModal(state => {
+      return false
+    }) 
+    : setShowModal(state=>{
+      return true
+    })
+  }
   
   const posts = [
     {
@@ -57,12 +70,17 @@ function App() {
                 <Post
                   key={post.id}
                   postProps={post}
+                  onChangeModalState={ChangeModalState}
                 />
               )
             })
           }
         </main>
       </div>
+      <Modal
+        handleChangeModalState={ChangeModalState}
+        showModal = {showModal}
+      />
     </div>
   )
 }

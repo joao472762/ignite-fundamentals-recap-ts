@@ -31,13 +31,14 @@ interface props{
         author: Author,
         commentsContent: CommentsContent[],
         publishedAt: Date
-    }
+    },
+    onChangeModalState: () => void
 }
 
 
 
 
-export function Post({postProps}:props){
+export function Post({postProps,onChangeModalState}:props){
 
     const {author ,commentsContent,publishedAt} = postProps
 
@@ -75,7 +76,6 @@ export function Post({postProps}:props){
         setTextComment(state => {
             return ''
         })
-        console.log(comments)
 
     }
 
@@ -104,7 +104,7 @@ export function Post({postProps}:props){
         <article className={styles.post}>
             <header>
                 <Avatar 
-                onClick={handleAddNewComment}
+         
                 src="https://github.com/joao472762.png"/>
                 <div className={styles.profile}>
                     <div className= {styles.author}>
@@ -156,7 +156,7 @@ export function Post({postProps}:props){
                             key={comment.id}
                             commentProps={comment}
                             onDeleteComment = {deleteOneComment}
-
+                            handleChangeModalState = {onChangeModalState}
                         />
                     )
                 })

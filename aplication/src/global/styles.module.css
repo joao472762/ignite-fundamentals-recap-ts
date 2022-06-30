@@ -25,6 +25,7 @@
 }
 
 body{
+    display: flex;
     background-color: var(--grey900);
     color: var(--grey300);
     -webkit-font-somothing: antialiased
@@ -33,6 +34,7 @@ body,input,textarea,button{
     font-family: 'Roboto' ,sans-serif,serif;
     font-weight: 400;
     font-size: 1rem;
+    line-height: 1.6;
 }
 
 :focus{
