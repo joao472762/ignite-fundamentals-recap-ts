@@ -56,4 +56,8 @@
     background-color: transparent;
     font-weight: bold;
 }
+.comment .commentContent footer button p span::before{
+    content:  "\2022";
+    margin-right: 0.312rem;
+}
 

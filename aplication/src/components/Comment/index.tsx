@@ -5,8 +5,7 @@ import ptBR from "date-fns/esm/locale/pt-BR/index.js";
 
 import {Trash, ThumbsUp} from "phosphor-react"
 import { Author } from "../Post";
-import { useState } from "react";
-import { Modal } from "../Modal";
+import { SetStateAction, useState } from "react";
 
 interface Comment {
     commentProps:{
@@ -15,8 +14,9 @@ interface Comment {
         comment: string,
         publicationAtComment: Date,
     }
-    onDeleteComment: (commentId: number) => void,
-    handleChangeModalState: () => void
+    onChangeModalState: () => void,
+    setCommentIndexToDelete: React.Dispatch<SetStateAction<number>>,
+    
     
 }
 
@@ -24,8 +24,7 @@ interface Comment {
 
 export function Comment({
     commentProps,
-    onDeleteComment,
-    handleChangeModalState}:Comment){
+    onChangeModalState,setCommentIndexToDelete}:Comment){
 
     const [likes,setLikes] = useState(0)
 
@@ -43,11 +42,14 @@ export function Comment({
             return state + 1
         })
     }
+    function handleOpenModal(){
+        onChangeModalState()
+        setCommentIndexToDelete(commentProps.id)
 
-    function handleDeleteOneComment(){
-        onDeleteComment(commentProps.id)
-
+        
     }
+
+  
 
     return(
         <section className={styles.comment}>
@@ -65,7 +67,7 @@ export function Comment({
                         <p>{commentProps.comment}</p>
                     </div>
                     <button
-                        onClick={handleChangeModalState}
+                        onClick={handleOpenModal}
                         title="Lixeira">
                         <Trash/>
                     </button>

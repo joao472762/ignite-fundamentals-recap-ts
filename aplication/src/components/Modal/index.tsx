@@ -2,11 +2,21 @@ import styles from './styles.module.css'
 
 interface ModalPros {
     showModal: boolean
-    handleChangeModalState: () => void,
+    onChangeModalState: () => void,
+    onDeleteOneComment : () => void,
 }
 
 
-export function Modal({showModal, handleChangeModalState}:ModalPros){
+export function Modal({showModal, onChangeModalState,onDeleteOneComment}:ModalPros){
+    function handleChangeModal(){
+        onChangeModalState()
+
+    }
+    
+    function handleDeleteOnComment(){
+        onDeleteOneComment()
+        handleChangeModal()
+    }
     
     return(
         <>
@@ -19,14 +29,14 @@ export function Modal({showModal, handleChangeModalState}:ModalPros){
                         <footer>
                             <button
                                 className={styles.cancel}
-                                onClick={handleChangeModalState}
+                                onClick={handleChangeModal}
                                 >
                                     Cancelar
                             </button>
 
                             <button 
                                 className={styles.delete}
-                                onClick={handleChangeModalState}
+                                onClick={handleDeleteOnComment}
                             >
                                 Sim, excluir
                             </button>

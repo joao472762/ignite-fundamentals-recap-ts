@@ -1,9 +1,10 @@
 import {format,formatDistanceToNow} from 'date-fns'
 import ptBR from 'date-fns/esm/locale/pt-BR/index.js';
-import { FormEvent, useState, ChangeEvent } from 'react';
+import React, { FormEvent, useState, ChangeEvent  } from 'react';
 
 import { Avatar } from "../Avatar";
 import { Comment } from "../Comment";
+import { Modal } from '../Modal';
 
 import styles from './styles.module.css'
 
@@ -32,17 +33,23 @@ interface props{
         commentsContent: CommentsContent[],
         publishedAt: Date
     },
-    onChangeModalState: () => void
+ 
 }
 
 
 
 
-export function Post({postProps,onChangeModalState}:props){
+export function Post({postProps}:props){
 
     const {author ,commentsContent,publishedAt} = postProps
-
     const [comments,setComments] = useState<Comments[]>([])
+    const [showModal, setShowModal] = useState(false)
+    const [commentIndexToDelete, setCommentIndexToDelete] = useState(0)
+
+
+    
+
+    
     const [textComment,setTextComment] = useState('')
     const [commentId, setCommentId] = useState(0)
     
@@ -85,9 +92,9 @@ export function Post({postProps,onChangeModalState}:props){
             return (textAreaValue)
         })
     }
-    function deleteOneComment(commentId: number){
+    function deleteOneComment(){
         const commentListWithoutOne = comments.filter(comment =>{
-            return comment.id != commentId
+            return comment.id != commentIndexToDelete
         })
 
         setComments(state => {
@@ -95,6 +102,15 @@ export function Post({postProps,onChangeModalState}:props){
         })
 
     }
+    function ChangeModalState(){
+        showModal 
+        ? setShowModal(state => {
+          return false
+        }) 
+        : setShowModal(state=>{
+          return true
+        })
+      }
 
 
 
@@ -152,12 +168,24 @@ export function Post({postProps,onChangeModalState}:props){
             {
                 comments.map(comment =>{
                     return(
-                        <Comment
-                            key={comment.id}
-                            commentProps={comment}
-                            onDeleteComment = {deleteOneComment}
-                            handleChangeModalState = {onChangeModalState}
-                        />
+                        <>
+                            
+                            <Comment
+                                key={comment.id}
+                                commentProps={comment}
+                                setCommentIndexToDelete = {setCommentIndexToDelete}
+                                onChangeModalState = {ChangeModalState}
+                            />
+                            { 
+                                comments[0].id === comment.id
+                                && <Modal
+                                      
+                                        showModal = {showModal}
+                                        onChangeModalState = {ChangeModalState}
+                                        onDeleteOneComment = {deleteOneComment}
+                                    />
+                            }
+                        </>
                     )
                 })
             }

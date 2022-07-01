@@ -1,30 +1,19 @@
 import styles from "./app.module.css"
 import "../src/global/styles.module.css"
 
-import { Post } from "./components/Post"
+import { Author, Post } from "./components/Post"
 import { Header } from "./components/Header"
 import { SideBar } from "./components/Sidebar"
 import { Modal } from "./components/Modal"
 import { useState } from "react"
 
 function App() {
-  const [showModal,setShowModal] = useState(true)
 
-  function ChangeModalState(){
-    showModal 
-    ? setShowModal(state => {
-      return false
-    }) 
-    : setShowModal(state=>{
-      return true
-    })
-  }
-  
   const posts = [
     {
       id: 1,
       author:{
-        name: 'Lais Belofa P',
+        name: 'Lais Berlofa',
         avatarUrl: 'https://github.com/joao472762.png',
         role: 'UI Designer'
       },
@@ -41,9 +30,9 @@ function App() {
     {
       id: 2,
       author:{
-        name: 'Amanda u',
+        name: 'Amanda Mendez',
         avatarUrl: 'https://github.com/joao472762.png',
-        role: 'Rh'
+        role: 'Diretora do Rh'
       },
       commentsContent:[ 
         { type: 'paragraph',content: 'olá eu sou amanda'},
@@ -56,6 +45,14 @@ function App() {
 
     }
   ]
+
+  
+
+ 
+
+  
+
+
 
   return (
     <div className="App">
@@ -70,17 +67,14 @@ function App() {
                 <Post
                   key={post.id}
                   postProps={post}
-                  onChangeModalState={ChangeModalState}
+                  
                 />
               )
             })
           }
         </main>
       </div>
-      <Modal
-        handleChangeModalState={ChangeModalState}
-        showModal = {showModal}
-      />
+ 
     </div>
   )
 }
