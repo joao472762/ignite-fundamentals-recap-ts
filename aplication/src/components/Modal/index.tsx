@@ -1,3 +1,4 @@
+import { MouseEvent} from 'react'
 import styles from './styles.module.css'
 
 interface ModalPros {
@@ -17,11 +18,19 @@ export function Modal({showModal, onChangeModalState,onDeleteOneComment}:ModalPr
         onDeleteOneComment()
         handleChangeModal()
     }
+
+    function handleOutSideClick(event:MouseEvent<HTMLDivElement>){
+        event.target.className == styles.modalContainer
+        && onChangeModalState()
+    }
     
     return(
         <>
             {showModal
-            && <div className={styles.modalContainer}>
+            && <div
+                className={styles.modalContainer}
+                onClick = {handleOutSideClick}
+             >
                     <div className={styles.content}>
                         <strong>Excluir comentário</strong>
                         <p>Você tem certeza que gostaria de excluir este comentário?</p>

@@ -112,10 +112,6 @@ export function Post({postProps}:props){
         })
       }
 
-
-
-  
-
     return(
         <article className={styles.post}>
             <header>
@@ -176,15 +172,14 @@ export function Post({postProps}:props){
                                 setCommentIndexToDelete = {setCommentIndexToDelete}
                                 onChangeModalState = {ChangeModalState}
                             />
-                            { 
-                                comments[0].id === comment.id
-                                && <Modal
-                                      
-                                        showModal = {showModal}
-                                        onChangeModalState = {ChangeModalState}
-                                        onDeleteOneComment = {deleteOneComment}
-                                    />
-                            }
+                           
+                            <Modal
+                                key={publicationAtComplete + ''}
+                                showModal = {showModal}
+                                onChangeModalState = {ChangeModalState}
+                                onDeleteOneComment = {deleteOneComment}
+                            />
+                            
                         </>
                     )
                 })
